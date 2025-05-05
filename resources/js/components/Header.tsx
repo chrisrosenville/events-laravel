@@ -2,9 +2,6 @@ import { useInitials } from '@/hooks/use-initials';
 import { User } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-
 interface PagePropsWithAuth {
     auth: {
         user: User | null;
@@ -34,19 +31,19 @@ export const Header = () => {
                                 <Link href="/" className="text-sm font-medium text-inherit">
                                     Home
                                 </Link>
-                                <div className="h-[1px] w-0 rounded-lg bg-black transition-all ease-in-out group-hover/nav-item:w-full dark:bg-white"></div>
+                                <div className="h-[1px] w-0 rounded-lg bg-black transition-all ease-in-out group-hover/nav-item:w-full"></div>
                             </li>
                             <li className="group/nav-item">
                                 <Link href="/events" className="text-sm font-medium text-inherit">
                                     Events
                                 </Link>
-                                <div className="h-[1px] w-0 rounded-lg bg-black transition-all ease-in-out group-hover/nav-item:w-full dark:bg-white"></div>
+                                <div className="h-[1px] w-0 rounded-lg bg-black transition-all ease-in-out group-hover/nav-item:w-full"></div>
                             </li>
                             <li className="group/nav-item">
                                 <Link href="/about" className="text-sm font-medium text-inherit">
                                     About
                                 </Link>
-                                <div className="h-[1px] w-0 rounded-lg bg-black transition-all ease-in-out group-hover/nav-item:w-full dark:bg-white"></div>
+                                <div className="h-[1px] w-0 rounded-lg bg-black transition-all ease-in-out group-hover/nav-item:w-full"></div>
                             </li>
                         </ul>
                     </nav>
@@ -56,40 +53,62 @@ export const Header = () => {
                     {/* User menu or auth links */}
                     <div className="flex items-center">
                         {auth.user ? (
-                            <DropdownMenu>
-                                <DropdownMenuTrigger className="focus:outline-none">
-                                    <Avatar className="size-8 cursor-pointer hover:opacity-80">
+                            <div className="relative">
+                                {/* Dropdown toggle button */}
+                                <button
+                                    className="relative flex items-center focus:outline-none"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const dropdown = document.getElementById('user-dropdown');
+                                        if (dropdown) {
+                                            dropdown.classList.toggle('hidden');
+                                        }
+                                    }}
+                                >
+                                    <div className="size-8 cursor-pointer rounded-full text-gray-700 hover:opacity-80">
                                         {auth.user.avatar ? (
-                                            <img src={auth.user.avatar} alt={auth.user.name} />
+                                            <img src={auth.user.avatar} alt={auth.user.name} className="h-full w-full rounded-full object-cover" />
                                         ) : (
-                                            <AvatarFallback className="bg-blue-500 text-white">{getInitials(auth.user.name)}</AvatarFallback>
+                                            <div className="flex h-full w-full items-center justify-center rounded-full bg-blue-500 text-white">
+                                                {getInitials(auth.user.name)}
+                                            </div>
                                         )}
-                                    </Avatar>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" className="w-56">
+                                    </div>
+                                </button>
+
+                                {/* Dropdown menu */}
+                                <div
+                                    id="user-dropdown"
+                                    className="absolute right-0 z-50 mt-2 hidden w-56 rounded-md border border-gray-100 bg-white py-2 shadow-lg"
+                                >
+                                    {/* User info */}
                                     <div className="p-2 text-sm font-medium">
                                         <p className="truncate">{auth.user.name}</p>
                                         <p className="truncate text-xs text-gray-500">{auth.user.email}</p>
                                     </div>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem asChild>
-                                        <Link href="/dashboard" className="cursor-pointer">
-                                            Dashboard
-                                        </Link>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem asChild>
-                                        <Link
-                                            href="/logout"
-                                            method="post"
-                                            as="button"
-                                            className="w-full cursor-pointer text-left text-red-600 hover:text-red-700"
-                                        >
-                                            Log out
-                                        </Link>
-                                    </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
+
+                                    {/* Divider */}
+                                    <hr className="mx-2 my-1 border-gray-200" />
+
+                                    {/* Menu items */}
+                                    <Link href="/dashboard" className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100">
+                                        Dashboard
+                                    </Link>
+
+                                    {/* Divider */}
+                                    <hr className="mx-2 my-1 border-gray-200" />
+
+                                    {/* Logout button */}
+                                    <Link
+                                        href="/logout"
+                                        method="post"
+                                        as="button"
+                                        className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-100 hover:text-red-700"
+                                    >
+                                        Log out
+                                    </Link>
+                                </div>
+                            </div>
                         ) : (
                             <div className="flex items-center space-x-4">
                                 <Link href="/login" className="text-sm font-medium text-gray-700 hover:text-gray-900">

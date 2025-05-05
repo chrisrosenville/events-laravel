@@ -1,3 +1,4 @@
+import { Button } from '@/components/buttons/Button';
 import { MainLayout } from '@/layouts/MainLayout';
 import { formatDate } from '@/lib/utils';
 import { Event } from '@/types';
@@ -16,7 +17,7 @@ export default function Home({ auth, events = [] }: HomeProps) {
 
             <main className="max-w-page relative mx-auto">
                 {/* Hero section */}
-                <div className="home-hero relative min-h-[500px] bg-gradient-to-br from-blue-500 to-purple-600">
+                <div className="home-hero relative min-h-[500px] bg-gradient-to-br from-blue-500 to-purple-600 pb-32">
                     <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="flex flex-col items-center py-16 lg:flex-row lg:items-start lg:gap-12">
                             {/* Left column: Text content */}
@@ -29,32 +30,25 @@ export default function Home({ auth, events = [] }: HomeProps) {
                                     Connect with people who share your interests. Discover events, create your own, and build a community.
                                 </p>
                                 <div className="mt-10 flex flex-wrap justify-center gap-4 lg:justify-start">
-                                    <Link
-                                        href={route('events.index')}
-                                        className="rounded-md bg-white px-5 py-3 text-base font-medium text-blue-600 shadow-sm transition duration-300 hover:bg-blue-50"
-                                    >
-                                        Browse Events
-                                    </Link>
+                                    <Button className="bg-neutral-100 font-medium text-neutral-900 hover:bg-neutral-200">
+                                        <Link href={route('events.index')} className="text-base">
+                                            Browse Events
+                                        </Link>
+                                    </Button>
                                     {auth.user ? (
-                                        <Link
-                                            href={route('events.create')}
-                                            className="rounded-md border border-blue-100 bg-transparent px-5 py-3 text-base font-medium text-white transition duration-300 hover:border-blue-50 hover:bg-blue-700"
-                                        >
-                                            Create an Event
-                                        </Link>
+                                        <Button className="bg-transparent font-medium text-white underline-offset-4 hover:underline">
+                                            <Link href={route('events.create')}>Create an Event</Link>
+                                        </Button>
                                     ) : (
-                                        <Link
-                                            href={route('login')}
-                                            className="rounded-md border border-blue-100 bg-transparent px-5 py-3 text-base font-medium text-white transition duration-300 hover:border-blue-50 hover:bg-blue-700"
-                                        >
-                                            Sign In
-                                        </Link>
+                                        <Button className="bg-transparent font-medium text-white underline-offset-4 hover:underline">
+                                            <Link href={route('login')}>Sign In</Link>
+                                        </Button>
                                     )}
                                 </div>
                             </div>
 
                             {/* Right column: Image */}
-                            {/* <div className="mt-14 flex-1 lg:mt-0">
+                            <div className="mt-14 flex-1 lg:mt-0">
                                 <div className="relative mx-auto max-w-lg lg:max-w-none">
                                     <div className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/10">
                                         <img
@@ -67,7 +61,7 @@ export default function Home({ auth, events = [] }: HomeProps) {
                                     <div className="absolute -top-6 -right-6 -z-10 aspect-square w-1/2 rounded-full bg-blue-400 opacity-30 blur-3xl"></div>
                                     <div className="absolute -bottom-6 -left-6 -z-10 aspect-square w-1/2 rounded-full bg-purple-400 opacity-30 blur-3xl"></div>
                                 </div>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
 
