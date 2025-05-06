@@ -5,9 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { MainLayout } from '@/layouts/MainLayout';
-import { PageProps } from '@/types';
 
-export default function EventCreate({ auth }: PageProps) {
+export default function EventCreate() {
     const { data, setData, post, processing, errors } = useForm({
         name: '',
         description: '',

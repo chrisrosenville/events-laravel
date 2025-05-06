@@ -6,7 +6,7 @@ import { PageProps } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 import React, { useEffect } from 'react';
 
-export default function EventEdit({ auth, event }: PageProps) {
+export default function EventEdit({ event }: PageProps) {
     const { data, setData, put, processing, errors } = useForm({
         name: event?.name || '',
         description: event?.description || '',
@@ -28,7 +28,7 @@ export default function EventEdit({ auth, event }: PageProps) {
                 location: event.location || '',
             });
         }
-    }, [event]);
+    }, [event, setData]);
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
