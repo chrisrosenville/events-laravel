@@ -69,7 +69,7 @@ export default function Home({ auth, events = [] }: HomeProps) {
 
                     {/* Wave at the bottom */}
                     <svg
-                        className="absolute bottom-0 left-0 w-full text-white"
+                        className="absolute -bottom-1 left-0 w-full text-white"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 1440 320"
                         preserveAspectRatio="none"
@@ -83,7 +83,7 @@ export default function Home({ auth, events = [] }: HomeProps) {
                 </div>
 
                 {/* Events section */}
-                <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+                <div className="mx-auto max-w-7xl bg-white px-6 lg:px-8">
                     <div className="mb-8 flex items-center justify-between">
                         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Upcoming Events</h2>
                         <Link href={route('events.index')} className="text-sm leading-6 font-semibold text-blue-600 hover:text-blue-500">
