@@ -30,7 +30,7 @@ export default function Dashboard({ createdEvents = [], attendingEvents = [] }: 
                                     <div key={event.id} className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                                         <div className="aspect-w-16 aspect-h-9 bg-gray-200">
                                             <img
-                                                src={`https://source.unsplash.com/random/800x450/?event&sig=${event.id}`}
+                                                src={event.image_url || 'https://placehold.co/600x400'}
                                                 alt={event.name}
                                                 className="h-32 w-full object-cover"
                                             />
@@ -79,7 +79,7 @@ export default function Dashboard({ createdEvents = [], attendingEvents = [] }: 
                                     <div key={event.id} className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                                         <div className="aspect-w-16 aspect-h-9 bg-gray-200">
                                             <img
-                                                src={`https://source.unsplash.com/random/800x450/?event&sig=${event.id}`}
+                                                src={event.image_url || 'https://placehold.co/600x400'}
                                                 alt={event.name}
                                                 className="h-32 w-full object-cover"
                                             />

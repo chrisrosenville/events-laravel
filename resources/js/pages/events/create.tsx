@@ -1,11 +1,17 @@
-import { PageProps } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
-import React from 'react';
+
+import { Button } from '@/components/buttons/Button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { MainLayout } from '@/layouts/MainLayout';
+import { PageProps } from '@/types';
 
 export default function EventCreate({ auth }: PageProps) {
     const { data, setData, post, processing, errors } = useForm({
         name: '',
         description: '',
+        image_url: '',
         start_date: '',
         end_date: '',
         location: '',
@@ -17,7 +23,7 @@ export default function EventCreate({ auth }: PageProps) {
     }
 
     return (
-        <>
+        <MainLayout>
             <Head title="Create Event" />
 
             <div className="py-12">
@@ -28,10 +34,10 @@ export default function EventCreate({ auth }: PageProps) {
 
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                                    <Label htmlFor="name" className="block text-sm font-medium text-gray-700">
                                         Event Name <span className="text-red-600">*</span>
-                                    </label>
-                                    <input
+                                    </Label>
+                                    <Input
                                         type="text"
                                         id="name"
                                         value={data.name}
@@ -43,10 +49,24 @@ export default function EventCreate({ auth }: PageProps) {
                                 </div>
 
                                 <div>
-                                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                                    <Label htmlFor="image" className="block text-sm font-medium text-gray-700">
+                                        Image URL (Optional)
+                                    </Label>
+                                    <Input
+                                        type="text"
+                                        id="image"
+                                        value={data.image_url}
+                                        onChange={(e) => setData('image_url', e.target.value)}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                    />
+                                    {errors.name && <div className="mt-1 text-sm text-red-500">{errors.name}</div>}
+                                </div>
+
+                                <div>
+                                    <Label htmlFor="description" className="block text-sm font-medium text-gray-700">
                                         Description
-                                    </label>
-                                    <textarea
+                                    </Label>
+                                    <Textarea
                                         id="description"
                                         value={data.description}
                                         onChange={(e) => setData('description', e.target.value)}
@@ -58,10 +78,10 @@ export default function EventCreate({ auth }: PageProps) {
 
                                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                                     <div>
-                                        <label htmlFor="start_date" className="block text-sm font-medium text-gray-700">
+                                        <Label htmlFor="start_date" className="block text-sm font-medium text-gray-700">
                                             Start Date & Time <span className="text-red-600">*</span>
-                                        </label>
-                                        <input
+                                        </Label>
+                                        <Input
                                             type="datetime-local"
                                             id="start_date"
                                             value={data.start_date}
@@ -73,10 +93,10 @@ export default function EventCreate({ auth }: PageProps) {
                                     </div>
 
                                     <div>
-                                        <label htmlFor="end_date" className="block text-sm font-medium text-gray-700">
+                                        <Label htmlFor="end_date" className="block text-sm font-medium text-gray-700">
                                             End Date & Time (Optional)
-                                        </label>
-                                        <input
+                                        </Label>
+                                        <Input
                                             type="datetime-local"
                                             id="end_date"
                                             value={data.end_date}
@@ -88,10 +108,10 @@ export default function EventCreate({ auth }: PageProps) {
                                 </div>
 
                                 <div>
-                                    <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+                                    <Label htmlFor="location" className="block text-sm font-medium text-gray-700">
                                         Location (Optional)
-                                    </label>
-                                    <input
+                                    </Label>
+                                    <Input
                                         type="text"
                                         id="location"
                                         value={data.location}
@@ -102,26 +122,26 @@ export default function EventCreate({ auth }: PageProps) {
                                 </div>
 
                                 <div className="mt-4 flex items-center justify-end">
-                                    <button
+                                    <Button
                                         type="button"
                                         onClick={() => window.history.back()}
                                         className="mr-4 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold tracking-widest text-gray-700 uppercase shadow-sm transition hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:opacity-25"
                                     >
                                         Cancel
-                                    </button>
-                                    <button
+                                    </Button>
+                                    <Button
                                         type="submit"
                                         disabled={processing}
                                         className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition hover:bg-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none active:bg-blue-700 disabled:opacity-25"
                                     >
                                         {processing ? 'Creating...' : 'Create Event'}
-                                    </button>
+                                    </Button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+        </MainLayout>
     );
 }
