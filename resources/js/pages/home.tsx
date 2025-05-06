@@ -5,6 +5,8 @@ import { Event } from '@/types';
 import { IAuth } from '@/types/user';
 import { Head, Link } from '@inertiajs/react';
 
+import Festive from '@/public/festivities.svg';
+
 interface HomeProps {
     auth: IAuth;
     events?: Event[];
@@ -50,9 +52,9 @@ export default function Home({ auth, events = [] }: HomeProps) {
                             {/* Right column: Image */}
                             <div className="mt-14 flex-1 lg:mt-0">
                                 <div className="relative mx-auto max-w-lg lg:max-w-none">
-                                    <div className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/10">
+                                    <div className="overflow-hidden">
                                         <img
-                                            src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                                            src={Festive}
                                             alt="People at an event"
                                             className="h-full w-full object-cover"
                                             style={{ aspectRatio: '4/3' }}
