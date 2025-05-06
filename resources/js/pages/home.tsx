@@ -97,7 +97,7 @@ export default function Home({ auth, events = [] }: HomeProps) {
                                 <div key={event.id} className="group relative overflow-hidden rounded-lg bg-white shadow">
                                     <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden bg-gray-200">
                                         <img
-                                            src={`https://source.unsplash.com/random/800x600/?event&sig=${event.id}`}
+                                            src={event.image_url || 'https://placehold.co/600x400'}
                                             alt={event.name}
                                             className="h-48 w-full object-cover object-center"
                                         />

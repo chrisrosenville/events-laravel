@@ -10,6 +10,7 @@ export interface Event {
     id: number;
     name: string;
     description?: string;
+    image_url?: string;
     start_date: string;
     end_date?: string;
     location?: string;

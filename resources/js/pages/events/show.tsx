@@ -49,11 +49,7 @@ export default function EventShow({ auth, event, isAttending, attendeeCount, fla
                     {/* Event Header */}
                     <div className="mb-8 overflow-hidden bg-white shadow sm:rounded-lg">
                         <div className="relative">
-                            <img
-                                src={`https://source.unsplash.com/random/1200x400/?event&sig=${event.id}`}
-                                alt={event.name}
-                                className="h-64 w-full object-cover"
-                            />
+                            <img src={event.image_url || 'https://placehold.co/600x400'} alt={event.name} className="h-64 w-full object-cover" />
                             <div className="bg-opacity-40 absolute inset-0 flex items-end bg-black">
                                 <div className="p-6 text-white">
                                     <h1 className="text-3xl font-bold">{event.name}</h1>
