@@ -1,11 +1,10 @@
 // Components
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
-import TextLink from '@/components/text-link';
-import { Button } from '@/components/ui/button';
-import AuthLayout from '@/layouts/auth-layout';
+import { Button } from '@/components/buttons/Button';
+import { MainLayout } from '@/layouts/MainLayout';
 
 export default function VerifyEmail({ status }: { status?: string }) {
     const { post, processing } = useForm({});
@@ -17,7 +16,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
     };
 
     return (
-        <AuthLayout title="Verify email" description="Please verify your email address by clicking on the link we just emailed to you.">
+        <MainLayout>
             <Head title="Email verification" />
 
             {status === 'verification-link-sent' && (
@@ -27,15 +26,14 @@ export default function VerifyEmail({ status }: { status?: string }) {
             )}
 
             <form onSubmit={submit} className="space-y-6 text-center">
-                <Button disabled={processing} variant="secondary">
-                    {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                    Resend verification email
+                <Button disabled={processing} className="mx-auto flex w-full max-w-xs items-center justify-center bg-blue-500 text-white">
+                    {processing ? <LoaderCircle className="h-6 w-6 animate-spin" /> : 'Resend verification email'}
                 </Button>
 
-                <TextLink href={route('logout')} method="post" className="mx-auto block text-sm">
+                <Link href={route('logout')} method="post" className="mx-auto block text-sm underline underline-offset-4">
                     Log out
-                </TextLink>
+                </Link>
             </form>
-        </AuthLayout>
+        </MainLayout>
     );
 }

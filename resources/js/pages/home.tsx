@@ -38,7 +38,7 @@ export default function Home({ auth, events = [] }: HomeProps) {
                                         </Link>
                                     </Button>
                                     {auth.user ? (
-                                        <Button className="bg-transparent font-medium text-white underline-offset-4 hover:underline">
+                                        <Button className="bg-transparent font-medium text-white underline-offset-4 shadow-none hover:underline">
                                             <Link href={route('events.create')}>Create an Event</Link>
                                         </Button>
                                     ) : (
