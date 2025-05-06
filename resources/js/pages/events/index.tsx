@@ -1,14 +1,15 @@
+import { MainLayout } from '@/layouts/MainLayout';
 import { formatDate } from '@/lib/utils';
 import { PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 
 export default function EventsIndex({ auth, events = [] }: PageProps) {
     return (
-        <>
+        <MainLayout>
             <Head title="Events" />
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <main className="max-w-page mx-auto min-h-svh p-4 sm:p-8">
+                <div className="mx-auto max-w-7xl">
                     <div className="mb-8 flex items-center justify-between">
                         <h1 className="text-3xl font-bold text-gray-900">All Events</h1>
                         {auth.user && (
@@ -70,7 +71,7 @@ export default function EventsIndex({ auth, events = [] }: PageProps) {
                         </div>
                     )}
                 </div>
-            </div>
-        </>
+            </main>
+        </MainLayout>
     );
 }

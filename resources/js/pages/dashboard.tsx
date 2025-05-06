@@ -8,8 +8,8 @@ export default function Dashboard({ createdEvents = [], attendingEvents = [] }: 
         <MainLayout>
             <Head title="Dashboard" />
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <main className="max-w-page relative mx-auto">
+                <div className="mx-auto py-12 sm:px-6 lg:px-8">
                     <h1 className="mb-8 text-3xl font-bold text-gray-900">Dashboard</h1>
 
                     {/* Events you created */}
@@ -116,7 +116,7 @@ export default function Dashboard({ createdEvents = [], attendingEvents = [] }: 
                         )}
                     </div>
                 </div>
-            </div>
+            </main>
         </MainLayout>
     );
 }
