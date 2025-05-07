@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
@@ -7,14 +8,10 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Socialite\Facades\Socialite;
 
-// Home page - accessible by anyone
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-// Route::get('login/{provider', [Socialite::class, 'redirect'])->name('login.social');
-// Route::get('login/{provider}/callback', [Socialite::class, 'handleProviderCallback'])->name('login.social.callback');
-
-// Public event routes - accessible by anyone
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
+Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
 // Authenticated event routes - require login
 Route::middleware(['auth'])->group(function () {

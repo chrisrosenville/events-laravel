@@ -103,7 +103,7 @@ export const Header = () => {
                                         href="/logout"
                                         method="post"
                                         as="button"
-                                        className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-100 hover:text-red-700"
+                                        className="block w-full cursor-pointer px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-100 hover:text-red-700"
                                     >
                                         Log out
                                     </Link>
