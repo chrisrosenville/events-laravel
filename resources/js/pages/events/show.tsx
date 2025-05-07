@@ -1,3 +1,4 @@
+import { MainLayout } from '@/layouts/MainLayout';
 import { formatDate } from '@/lib/utils';
 import { PageProps } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/react';
@@ -19,8 +20,21 @@ export default function EventShow({ auth, event, isAttending, attendeeCount, fla
     if (!event) return null;
 
     return (
-        <>
+        <MainLayout>
             <Head title={event.name} />
+
+            {/* Navigation */}
+            <div className="max-w-page mx-auto mt-8 flex justify-between">
+                <Link href={route('events.index')} className="text-blue-600 hover:text-blue-800">
+                    ← Back to Events
+                </Link>
+
+                {auth.user && (
+                    <Link href={route('dashboard')} className="text-blue-600 hover:text-blue-800">
+                        Go to Dashboard →
+                    </Link>
+                )}
+            </div>
 
             {/* Success Message */}
             {flash?.success && (
@@ -157,21 +171,8 @@ export default function EventShow({ auth, event, isAttending, attendeeCount, fla
                             </div>
                         </div>
                     </div>
-
-                    {/* Navigation */}
-                    <div className="mt-8 flex justify-between">
-                        <Link href={route('events.index')} className="text-blue-600 hover:text-blue-800">
-                            ← Back to Events
-                        </Link>
-
-                        {auth.user && (
-                            <Link href={route('dashboard')} className="text-blue-600 hover:text-blue-800">
-                                Go to Dashboard →
-                            </Link>
-                        )}
-                    </div>
                 </div>
             </div>
-        </>
+        </MainLayout>
     );
 }
