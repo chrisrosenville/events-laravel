@@ -8,7 +8,7 @@ use Inertia\Inertia;
 class DashboardController extends Controller
 {
     /**
-     * Display the user dashboard with their events.
+     * Display the user dashboard with their events and settings.
      */
     public function index(Request $request)
     {
@@ -27,6 +27,7 @@ class DashboardController extends Controller
             ->get();
             
         return Inertia::render('dashboard', [
+            'user' => $user,
             'createdEvents' => $createdEvents,
             'attendingEvents' => $attendingEvents,
         ]);
