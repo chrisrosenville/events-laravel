@@ -105,8 +105,8 @@ export default function AboutIndex() {
                                 Founded in 2025, we've been working to reimagine how people discover and participate in events.
                             </p>
                             <p className="mt-4 text-lg text-gray-600">
-                                Based in Copenhagen, Denmark, we're a growing team focused on creating technology that makes community building easier
-                                and more accessible for everyone.
+                                Based in Aarhus, Denmark, we're a growing team focused on creating technology that makes community building easier and
+                                more accessible for everyone.
                             </p>
                         </div>
                     </div>
