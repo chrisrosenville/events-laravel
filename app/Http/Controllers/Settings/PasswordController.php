@@ -16,9 +16,28 @@ class PasswordController extends Controller
     /**
      * Show the user's password settings page.
      */
-    public function edit(): Response
+    public function edit(Request $request): Response
     {
-        return Inertia::render('settings/password');
+        $user = $request->user();
+        
+        // Get events created by the user
+        $createdEvents = $user->events()
+            ->orderBy('start_date', 'asc')
+            ->get();
+            
+        // Get events the user is attending
+        $attendingEvents = $user->attendingEvents()
+            ->with('user')
+            ->where('start_date', '>=', now())
+            ->orderBy('start_date', 'asc')
+            ->get();
+        
+        return Inertia::render('dashboard', [
+            'user' => $user,
+            'createdEvents' => $createdEvents,
+            'attendingEvents' => $attendingEvents,
+            'activeTab' => 'password' // Pass the active tab to show the password tab by default
+        ]);
     }
 
     /**
@@ -35,6 +54,6 @@ class PasswordController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return Redirect::route('password.edit');
+        return Redirect::route('dashboard');
     }
 }
