@@ -91,7 +91,7 @@ export default function Dashboard({ user, createdEvents = [], attendingEvents = 
         <MainLayout>
             <Head title="Dashboard" />
 
-            <main className="max-w-page relative mx-auto">
+            <main className="max-w-page relative mx-auto sm:min-h-svh">
                 <div className="mx-auto px-4 py-12 sm:px-6 lg:px-8">
                     <h1 className="mb-8 text-3xl font-bold text-gray-900">Dashboard</h1>
 
