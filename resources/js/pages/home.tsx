@@ -17,7 +17,7 @@ export default function Home({ auth, events = [] }: HomeProps) {
         <MainLayout>
             <Head title="Home" />
 
-            <main className="max-w-page relative mx-auto">
+            <main className="max-w-page relative mx-auto min-h-svh">
                 {/* Hero section */}
                 <div className="home-hero relative min-h-[500px] bg-gradient-to-br from-blue-500 to-purple-600 pb-32">
                     <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
