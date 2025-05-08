@@ -19,8 +19,25 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
-        return Inertia::render('settings/profile', [
-            'user' => $request->user(),
+        $user = $request->user();
+        
+        // Get events created by the user
+        $createdEvents = $user->events()
+            ->orderBy('start_date', 'asc')
+            ->get();
+            
+        // Get events the user is attending
+        $attendingEvents = $user->attendingEvents()
+            ->with('user')
+            ->where('start_date', '>=', now())
+            ->orderBy('start_date', 'asc')
+            ->get();
+        
+        return Inertia::render('dashboard', [
+            'user' => $user,
+            'createdEvents' => $createdEvents,
+            'attendingEvents' => $attendingEvents,
+            'activeTab' => 'profile' // Pass the active tab to show the profile tab by default
         ]);
     }
 
@@ -46,7 +63,7 @@ class ProfileController extends Controller
         
         $user->save();
 
-        return Redirect::route('profile.edit');
+        return Redirect::route('dashboard');
     }
 
     /**
