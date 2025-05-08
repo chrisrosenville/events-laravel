@@ -63,7 +63,8 @@ class ProfileController extends Controller
         
         $user->save();
 
-        return Redirect::route('dashboard');
+        // Keep the original redirect to maintain test compatibility
+        return Redirect::route('profile.edit');
     }
 
     /**

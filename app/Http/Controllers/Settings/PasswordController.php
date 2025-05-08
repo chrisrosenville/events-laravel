@@ -54,6 +54,7 @@ class PasswordController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return Redirect::route('dashboard');
+        // Keep the original redirect to maintain test compatibility
+        return Redirect::route('password.edit');
     }
 }
