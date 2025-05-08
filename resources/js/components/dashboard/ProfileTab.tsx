@@ -32,7 +32,6 @@ interface ProfileTabProps {
 }
 
 export const ProfileTab = ({
-    userData,
     profileData,
     deleteData,
     profileErrors,
