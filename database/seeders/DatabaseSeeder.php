@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
         
         // Create 10 regular users
         $users = User::factory(10)->create();
-        $allUsers = $users->push($testUser);
+        $users->add($testUser);
+        $allUsers = $users;
         
         // Create 20 upcoming events
         $upcomingEvents = Event::factory(20)
@@ -34,14 +35,8 @@ class DatabaseSeeder extends Seeder
             ->recycle($allUsers)
             ->create();
             
-        // Create 3 events with no end date
-        $noEndDateEvents = Event::factory(3)
-            ->noEndDate()
-            ->recycle($allUsers)
-            ->create();
-            
         // Assign random attendees to events
-        $allEvents = $upcomingEvents->concat($pastEvents)->concat($noEndDateEvents);
+        $allEvents = $upcomingEvents->concat($pastEvents);
         
         foreach ($allEvents as $event) {
             // Each event gets a random number of attendees (0-8)

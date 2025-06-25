@@ -10,10 +10,12 @@ export default function AboutIndex() {
             {/* Hero Section */}
             <div className="bg-gradient-to-br from-blue-600 to-purple-700 py-16 text-white">
                 <div className="max-w-page mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">Connecting Communities Through Events</h1>
-                        <p className="mx-auto mt-6 max-w-2xl text-lg font-medium">
-                            We're building a platform where people discover, create, and share meaningful experiences.
+                    <div className="flex flex-col items-center">
+                        <h1 className="max-w-3xl text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                            Connecting Communities Through Events
+                        </h1>
+                        <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-medium">
+                            A platform where people discover, create, and share meaningful experiences.
                         </p>
                     </div>
                 </div>

@@ -24,7 +24,7 @@ export default function EventShow({ auth, event, isAttending, attendeeCount, fla
             <Head title={event.name} />
 
             {/* Navigation */}
-            <div className="max-w-page mx-auto mt-8 flex justify-between">
+            <div className="max-w-page mx-auto mt-8 flex min-h-svh justify-between">
                 <Link href={route('events.index')} className="text-blue-600 hover:text-blue-800">
                     ← Back to Events
                 </Link>
